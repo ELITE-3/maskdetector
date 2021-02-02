@@ -1,4 +1,4 @@
-# maskdetector
+# MASK DETECTOR
 # python mask detector
 # without tensorflow
 # uses haar cascades
