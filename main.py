@@ -25,7 +25,6 @@ col = (255,255,255)
 cap = cv2.VideoCapture(0)
 
 while 1:
-    current_time = time.strftime("%H:%M:%S", t)
     # Get individual frame
     ret, img = cap.read()
     img = cv2.flip(img,1)
