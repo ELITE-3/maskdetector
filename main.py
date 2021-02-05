@@ -1,19 +1,48 @@
+import os
+print("the path was",os.path.dirname(os.path.realpath(__file__)))
+path = (os.path.dirname(os.path.realpath(__file__)))
+os.chdir(path)
+print ("the directory is now changed to",path)
+print ('''
+   __  ______   ______ __  
+  /  |/  / _ | / __/ //_/  
+ / /|_/ / __ |_\ \/ ,<     
+/_/  /_/_/ |_/___/_/|_|    
+
+   ___  _____________________________  ___ 
+  / _ \/ __/_  __/ __/ ___/_  __/ __ \/ _ )
+ / // / _/  / / / _// /__  / / / /_/ / , _/
+/____/___/ /_/ /___/\___/ /_/  \____/_/|_| -ELITE-3
+                                            ''')
+print ('''INSTRUCTIONS: 
+1.change the threshold value based on your light available (default 100)
+2.remove the playsound function if u dont want the sound to be played
+3 press escape in camera output to exit properly
+4.be safe and enjoy''')
+ent = "1"
+ent = input("press enter to start")
+print('''MASK DETECTOR WILL START in ''')
+print("5")
 import numpy as np
-import cv2
 import random
 import time
+import cv2
+print("4")
 from playsound import playsound
+
+
+time.sleep(1)
 face_cascade = cv2.CascadeClassifier('face.xml')
 mouth_cascade = cv2.CascadeClassifier('nose2.xml')
 # Adjust threshold value in range 80 to 105 based on your light.
 bw_threshold = 100
-
-
-# User message
+sound = 1
+print("3")
 font = cv2.FONT_HERSHEY_SIMPLEX
 org = (30, 30)
 weared_mask_font_color = (0, 255,0)
 green = (0, 255,0)
+
 not_weared_mask_font_color = (0, 0, 255)
 red = (0, 0, 255)
 thickness = 2
@@ -21,8 +50,12 @@ font_scale = 1
 weared_mask = "all clear"
 not_weared_mask = "potential non masked person"
 col = (255,255,255)
+print("2")
+
 # Read video
 cap = cv2.VideoCapture(0)
+print("1")
+print("starting.......")
 
 while 1:
     # Get individual frame
@@ -49,7 +82,7 @@ while 1:
         col = (0,225,0)
        
         
-        # It has been observed that for white mask covering nose, with gray image face prediction is not happening
+        #compensation for white mask covering nose, with gray image face prediction is not happening
         cv2.putText(img, weared_mask, org, font, font_scale, weared_mask_font_color, thickness, cv2.LINE_AA)
     else:
         # Draw rectangle on face
@@ -71,7 +104,8 @@ while 1:
 
                 if(y < my < y + h):
                     print("alert!..")
-                    playsound('siren.mp3')
+                    playsound('siren.mp3',block=False)
+                    time.sleep(0.1)
                     col = (0,0,255)
                     # Face and nose are detected but nose coordinates are within face cordinates which `means nose prediction is true and
                     # person is not waring mask
