@@ -1,4 +1,4 @@
-opencv-python
 numpy
 playsound
-random
+opencv-python
+time
